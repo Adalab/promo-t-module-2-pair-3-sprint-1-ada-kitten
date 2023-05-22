@@ -1,6 +1,9 @@
 'use strict';
-const listElement = document.querySelector('.js-list');
 
+// INFORMACIÓN
+
+const listElement = document.querySelector('.js-list');
+ 
 const kittenImage1 = 'https://dev.adalab.es/gato-siames.webp';
 const kittenName1 = 'Anastacio' ;
 const kittenDesc1 = 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
@@ -15,8 +18,6 @@ const kittenImage3 = 'https://dev.adalab.es/maine-coon-cat.webp';
 const kittenName3 = 'Cielo';
 const kittenDesc3 = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
 const kittenRace3 = 'Maine Coon';
-
-
 
 const kittenOne = `<li class="card">
 <article>
@@ -59,4 +60,48 @@ const kittenThree = `<li class="card">
             </p>
           </li>`;
 
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+// BÚSQUEDA 
+
+const input_search_desc = document.querySelector('.js_in_search_desc');
+
+const descrSearchText = input_search_desc.value;
+
+if( kittenDesc1.includes(descrSearchText) ) {
+  listElement.innerHTML = kittenOne;
+}
+
+if( kittenDesc2.includes(descrSearchText) ) {
+  listElement.innerHTML = kittenTwo;
+}
+
+if( kittenDesc3.includes(descrSearchText) ) {
+  listElement.innerHTML = kittenThree;
+}
+
+// listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+
+let html = '';
+
+if (kittenRace1 === "") {
+  html = kittenRace1;
+  console.log(html);
+} else {
+  html = `Uy que despiste, no sabemos su raza`;
+  console.log(html);
+}
+
+if (kittenRace2 === '') {
+  html = kittenRace2;
+  console.log(html);
+} else {
+  html = `Uy que despiste, no sabemos su raza`;
+  console.log(html);
+}
+
+if (kittenRace3 === 'Maine Coon') {
+  html = kittenRace3;
+  console.log(html);
+} else {
+  html = `Uy que despiste, no sabemos su raza`;
+  console.log(html);
+} 
