@@ -78,7 +78,7 @@ if( kittenDesc3.includes(descrSearchText) ) {
   listElement.innerHTML = kittenThree;
 }
 
-// listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 let html = '';
 
@@ -105,3 +105,53 @@ if (kittenRace3 === 'Maine Coon') {
   html = `Uy que despiste, no sabemos su raza`;
   console.log(html);
 } 
+
+
+// AÑADIR EVENTOS: Adicionar nuevo gatito
+
+const plusBtn = document.querySelector(".js-btn-plus");
+
+plusBtn.addEventListener( 'click', () => {
+
+  const sectionForm = document.querySelector('.js-form');
+  sectionForm.classList.toggle('collapsed');
+})
+
+const addBtn = document.querySelector(".js-btn-add");
+
+
+const inputDesc = document.querySelector('.js-input-desc');
+const inputPhoto = document.querySelector('.js-input-photo');
+const inputName = document.querySelector('.js-input-name');
+const labelMessageError = document.querySelector('.js-label-error');
+
+let valueDesc = inputDesc.value;
+let valuePhoto = inputPhoto.value;
+let valueName = inputName.value;
+
+addBtn.addEventListener( 'click', () => {
+
+
+
+  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo.';
+  } else {
+  }
+
+})
+
+const cancelBtn = document.querySelector(".js-btn-cancel");
+
+cancelBtn.addEventListener( 'click', () => {
+
+  const sectionForm = document.querySelector('.js-form');
+  sectionForm.classList.toggle('collapsed');
+  labelMessageError.innerHTML = '';
+
+  valueDesc = "";
+  valuePhoto = "";
+  valueName = "";
+  
+})
+
+
