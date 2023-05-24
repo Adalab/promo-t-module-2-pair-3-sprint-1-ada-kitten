@@ -3,11 +3,12 @@
 // INFORMACIÓN
 
 const listElement = document.querySelector('.js-list');
- 
+
 const kittenImage1 = 'https://dev.adalab.es/gato-siames.webp';
 const kittenName1 = 'Anastacio' ;
 const kittenDesc1 = 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
 const kittenRace1 = 'Siamés';
+
 
 const kittenImage2 = 'https://dev.adalab.es/sphynx-gato.webp';
 const kittenName2 = 'Fiona';
@@ -19,7 +20,7 @@ const kittenName3 = 'Cielo';
 const kittenDesc3 = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
 const kittenRace3 = 'Maine Coon';
 
-const kittenOne = `<li class="card">
+/* const kittenOne = `<li class="card">
 <article>
   <img
     class="card_img"
@@ -33,8 +34,8 @@ const kittenOne = `<li class="card">
    </p>
 </article>
 </li>`;
-
-const kittenTwo = `<li class="card">
+*/
+/* const kittenTwo = `<li class="card">
             <img
               class="card_img"
               src=" ${kittenImage2}"
@@ -45,8 +46,8 @@ const kittenTwo = `<li class="card">
             <p class="card_description">
               ${kittenDesc2}
             </p>
-          </li>`;
-
+          </li>`;*/
+/*
 const kittenThree = `<li class="card">
             <img
               class="card_img"
@@ -58,8 +59,25 @@ const kittenThree = `<li class="card">
             <p class="card_description">
               ${kittenDesc3}
             </p>
-          </li>`;
+          </li>`; */
 
+          function renderKitten (url, name, race, desc) {
+            let htmlCode = `<li class="card">`;
+            htmlCode += `<img class="card_img"src=" ${url}" alt="maine-coon-cat" />`;
+            htmlCode += `<h3 class="card_title">${name.toUpperCase()}</h3>`;
+            htmlCode += `<h4 class="card_race">${race}</h4>`;
+            htmlCode += `<p class="card_description">${desc}</p>`;
+            htmlCode += `</li>`;
+            return htmlCode;
+          }
+          
+          const kittenOne = renderKitten('https://dev.adalab.es/gato-siames.webp', 'Anastacio', 'Siamés', 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.');
+
+          const kittenTwo = renderKitten(kittenImage2, kittenName2, kittenRace2, kittenDesc2);
+
+          const kittenThree = renderKitten(kittenImage3, kittenName3, kittenRace3, kittenDesc3);
+          
+          const kittenFour = renderKitten('http://placekitten.com/g/200/300', 'Lola', 'Común Europeo', 'Un gato muy bonito');
 // BÚSQUEDA 
 
 const input_search_desc = document.querySelector('.js_in_search_desc');
@@ -78,7 +96,6 @@ if( kittenDesc3.includes(descrSearchText) ) {
   listElement.innerHTML = kittenThree;
 }
 
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 let html = '';
 
@@ -110,48 +127,55 @@ if (kittenRace3 === 'Maine Coon') {
 // AÑADIR EVENTOS: Adicionar nuevo gatito
 
 const plusBtn = document.querySelector(".js-btn-plus");
-
-plusBtn.addEventListener( 'click', () => {
-
-  const sectionForm = document.querySelector('.js-form');
-  sectionForm.classList.toggle('collapsed');
-})
-
-const addBtn = document.querySelector(".js-btn-add");
-
-
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
 const labelMessageError = document.querySelector('.js-label-error');
+const sectionForm = document.querySelector('.js-form');
+const addBtn = document.querySelector(".js-btn-add");
+const cancelBtn = document.querySelector(".js-btn-cancel");
 
 let valueDesc = inputDesc.value;
 let valuePhoto = inputPhoto.value;
 let valueName = inputName.value;
 
-addBtn.addEventListener( 'click', () => {
+// MOSTRAR / OCULTAR EL FORMULARIO CON FUNCIONES
 
+function showNewCatForm () {
+  sectionForm.classList.remove('collapsed');
+}
 
+function hideNewCatForm () {
+  sectionForm.classList.add('collapsed');
+}
 
+function handleClickNewCatForm(event) {
+  event.preventDefault();
+  if (sectionForm.classList.contains('collapsed')) {
+    showNewCatForm();
+  } else {
+    hideNewCatForm();
+  }
+}
+
+function addNewKitten () {
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
     labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo.';
   } else {
   }
+}
+plusBtn.addEventListener('click', handleClickNewCatForm);
 
-})
-
-const cancelBtn = document.querySelector(".js-btn-cancel");
+addBtn.addEventListener( 'click', addNewKitten);
 
 cancelBtn.addEventListener( 'click', () => {
-
-  const sectionForm = document.querySelector('.js-form');
   sectionForm.classList.toggle('collapsed');
   labelMessageError.innerHTML = '';
-
   valueDesc = "";
   valuePhoto = "";
   valueName = "";
-  
 })
 
 
+
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour;
