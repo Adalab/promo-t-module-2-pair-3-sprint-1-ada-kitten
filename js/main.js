@@ -2,59 +2,14 @@
 
 // INFORMACIÓN
 
+// Query Selectors
 const listElement = document.querySelector('.js-list');
-
-const kittenImage1 = 'https://dev.adalab.es/gato-siames.webp';
-const kittenName1 = 'Anastacio' ;
-const kittenDesc1 = 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
-const kittenRace1 = ''; //'Siamés';
-
-
-const kittenImage2 = 'https://dev.adalab.es/sphynx-gato.webp';
-const kittenName2 = 'Fiona';
-const kittenDesc2 = 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.';
-const kittenRace2 = ''; //'Sphynx';
-
-const kittenImage3 = 'https://dev.adalab.es/maine-coon-cat.webp';
-const kittenName3 = 'Cielo';
-const kittenDesc3 = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
-const kittenRace3 = 'Maine Coon';
-
 const input_race =  document.querySelector('.js_input_race');
-const race = input_race.value;
-
-
-function renderKitten (url, name, race, desc) {
-  let html = '';
-  function renderRace() {
-    if (race === "") {
-      return `Uy que despiste, no sabemos su raza`;
-    } else {
-      return race;
-    }
-    }
-
-  let htmlCode = `<li class="card">`;
-    htmlCode += `<img class="card_img"src=" ${url}" alt="maine-coon-cat" />`;
-    htmlCode += `<h3 class="card_title">${name.toUpperCase()}</h3>`;
-    htmlCode += `<h4 class="card_race">${ renderRace() }</h4>`;
-    htmlCode += `<p class="card_description">${desc}</p>`;
-    htmlCode += `</li>`;
-  return htmlCode;
-}
-            
-  const kittenOne = renderKitten(kittenImage1, kittenName1, kittenRace1, kittenDesc1);
-
-  const kittenTwo = renderKitten(kittenImage2, kittenName2, kittenRace2, kittenDesc2);
-
-  const kittenThree = renderKitten(kittenImage3, kittenName3, kittenRace3, kittenDesc3);
-            
-  const kittenFour = renderKitten('http://placekitten.com/g/200/300', 'Lola', 'Común Europeo', 'Un gato muy bonito');
-
-
-
-// AÑADIR EVENTOS: Adicionar nuevo gatito
-
+// Búsqueda
+const input_search_desc = document.querySelector('.js_in_search_desc');
+const buttonSearch = document.querySelector('.js-button-search');
+const race = input_race.value; // búsqueda por race, pendiente
+// Eventos
 const plusBtn = document.querySelector(".js-btn-plus");
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
@@ -63,12 +18,68 @@ const labelMessageError = document.querySelector('.js-label-error');
 const sectionForm = document.querySelector('.js-form');
 const addBtn = document.querySelector(".js-btn-add");
 const cancelBtn = document.querySelector(".js-btn-cancel");
-
 let valueDesc = inputDesc.value;
 let valuePhoto = inputPhoto.value;
 let valueName = inputName.value;
 
-// MOSTRAR / OCULTAR EL FORMULARIO CON FUNCIONES
+const kittenData_1 = {
+  image: 'https://dev.adalab.es/gato-siames.webp',
+  name: 'Anastacio',
+  desc: 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
+  race: 'Siamés'
+}
+
+const kittenData_2 = {
+  image: 'https://dev.adalab.es/sphynx-gato.webp',
+  name: 'Fiona',
+  desc: 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.',
+  race: 'Sphynx'
+}
+
+const kittenData_3 = {
+  image: 'https://dev.adalab.es/maine-coon-cat.webp',
+  name: 'Cielo',
+  desc: 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
+  race: 'Maine Coon'
+}
+
+const kittenData_4 = {
+  image: 'http://placekitten.com/g/200/300',
+  name: 'Lola',
+  desc:'Un gato muy bonito',
+  race: 'Común Europeo'
+}
+
+// FUNCIONES
+
+const renderKitten = (kittenData) => {
+  let html = '';
+  function renderRace() {
+    if (kittenData.race === "") {
+        return `Uy que despiste, no sabemos su raza`;
+      } else {
+        return kittenData.race;
+      }
+    }
+    let htmlCode = `<li class="card">`;
+    htmlCode += `<img class="card_img"src=" ${kittenData.image}" alt="maine-coon-cat" />`;
+    htmlCode += `<h3 class="card_title">${kittenData.name.toUpperCase()}</h3>`;
+    htmlCode += `<h4 class="card_race">${ renderRace() }</h4>`;
+    htmlCode += `<p class="card_description">${kittenData.desc}</p>`;
+    htmlCode += `</li>`;
+    return htmlCode;
+  }
+
+  const kittenOne = renderKitten(kittenData_1);
+
+  const kittenTwo = renderKitten(kittenData_2);
+
+  const kittenThree = renderKitten(kittenData_3);
+      
+  const kittenFour = renderKitten(kittenData_4);
+
+
+// MOSTRAR / OCULTAR EL FORMULARIO AÑADIR GATITO CON FUNCIONES
 
 function showNewCatForm () {
   sectionForm.classList.remove('collapsed');
@@ -93,6 +104,30 @@ function addNewKitten () {
   } else {
   }
 }
+
+// Búsqueda
+
+const filterKitten = (event) => {
+  event.preventDefault();
+  listElement.innerHTML = '';
+  const descrSearchText = input_search_desc.value;
+  if (kittenData_1.desc.includes(descrSearchText )) {
+    listElement.innerHTML += kittenOne;
+  }
+  if (kittenData_2.desc.includes(descrSearchText)) {
+    listElement.innerHTML += kittenTwo;
+  }
+  if (kittenData_3.desc.includes(descrSearchText)) {
+    listElement.innerHTML += kittenThree;
+  }
+};
+
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour;
+
+// EVENTOS
+
+buttonSearch.addEventListener('click', filterKitten);
+
 plusBtn.addEventListener('click', handleClickNewCatForm);
 
 addBtn.addEventListener( 'click', addNewKitten);
@@ -105,38 +140,7 @@ cancelBtn.addEventListener( 'click', () => {
   valueName = "";
 })
 
-
-
-// BÚSQUEDA 
-
-
-
-const input_search_desc = document.querySelector('.js_in_search_desc');
-
-const buttonSearch = document.querySelector('.js-button-search');
-
-// debugger;
-
-const filterKitten = (event) => {
-  event.preventDefault();
-  listElement.innerHTML = '';
-  const descrSearchText = input_search_desc.value;
-  if (kittenDesc1.includes(descrSearchText )) {
-    listElement.innerHTML += kittenOne;
-  }
-  if (kittenDesc2.includes(descrSearchText)) {
-    listElement.innerHTML += kittenTwo;
-  }
-  if (kittenDesc3.includes(descrSearchText)) {
-    listElement.innerHTML += kittenThree;
-  }
-};
-
-buttonSearch.addEventListener('click', filterKitten);
-
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour;
-
-// Otra parte
+// Otra parte (Búsqueda por race, pendiente)
 /*
 let html = '';
 
