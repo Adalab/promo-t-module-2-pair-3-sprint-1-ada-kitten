@@ -22,6 +22,9 @@ let valueDesc = inputDesc.value;
 let valuePhoto = inputPhoto.value;
 let valueName = inputName.value;
 
+
+
+
 const kittenData_1 = {
   image: 'https://dev.adalab.es/gato-siames.webp',
   name: 'Anastacio',
@@ -50,6 +53,11 @@ const kittenData_4 = {
   race: 'Común Europeo'
 }
 
+// Arrays
+
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3, kittenData_4];
+
+
 // FUNCIONES
 
 const renderKitten = (kittenData) => {
@@ -70,13 +78,13 @@ const renderKitten = (kittenData) => {
     return htmlCode;
   }
 
-  const kittenOne = renderKitten(kittenData_1);
+  const kittenOne = renderKitten(kittenDataList[0]);
 
-  const kittenTwo = renderKitten(kittenData_2);
+  const kittenTwo = renderKitten(kittenDataList[1]);
 
-  const kittenThree = renderKitten(kittenData_3);
+  const kittenThree = renderKitten(kittenDataList[2]);
       
-  const kittenFour = renderKitten(kittenData_4);
+  const kittenFour = renderKitten(kittenDataList[3]);
 
 
 // MOSTRAR / OCULTAR EL FORMULARIO AÑADIR GATITO CON FUNCIONES
