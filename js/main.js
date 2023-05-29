@@ -115,26 +115,67 @@ function addNewKitten () {
 
 // Búsqueda
 
+
+
 const filterKitten = (event) => {
   event.preventDefault();
   listElement.innerHTML = '';
   const descrSearchText = input_search_desc.value;
-  if (kittenData_1.desc.includes(descrSearchText )) {
+  const raceSearch = input_race.value;
+  if (kittenData_1.desc.includes(descrSearchText) && kittenData_1.race.includes(raceSearch)) {
     listElement.innerHTML += kittenOne;
   }
-  if (kittenData_2.desc.includes(descrSearchText)) {
+  if (kittenData_2.desc.includes(descrSearchText) && kittenData_2.race.includes(raceSearch) ) {
     listElement.innerHTML += kittenTwo;
   }
-  if (kittenData_3.desc.includes(descrSearchText)) {
+  if (kittenData_3.desc.includes(descrSearchText) && kittenData_3.race.includes(raceSearch)) {
     listElement.innerHTML += kittenThree;
   }
+  if (kittenData_4.desc.includes(descrSearchText) && kittenData_4.race.includes(raceSearch)) {
+    listElement.innerHTML += kittenFour;
+  }
 };
+
+  /*let html = '';
+  if (kittenRace1 === "") {
+      html = kittenRace1;
+    //console.log(html);
+  } else {
+    html = `Uy que despiste, no sabemos su raza`;
+    //console.log(html);
+  }
+
+  if (kittenRace2 === '') {
+    html = kittenRace2;
+    console.log(html);
+  } else {
+    html = `Uy que despiste, no sabemos su raza`;
+    //console.log(html);
+  }
+
+  if (kittenRace3 === 'Maine Coon') {
+    html = kittenRace3;
+    console.log(html);
+  } else {
+    html = `Uy que despiste, no sabemos su raza`;
+    console.log(html);
+  } 
+
+  if (kittenRace4 === 'Maine Coon') {
+    html = kittenRace4;
+    //console.log(html);
+  } else {
+    html = `Uy que despiste, no sabemos su raza`;
+    //console.log(html);
+  } 
+}*/
 
 listElement.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour;
 
 // EVENTOS
 
 buttonSearch.addEventListener('click', filterKitten);
+// buttonSearch.addEventListener('click', filterRaceKitten);
 
 plusBtn.addEventListener('click', handleClickNewCatForm);
 
@@ -148,31 +189,3 @@ cancelBtn.addEventListener( 'click', () => {
   valueName = "";
 })
 
-// Otra parte (Búsqueda por race, pendiente)
-/*
-let html = '';
-
-  if (kittenRace1 === "") {
-      html = kittenRace1;
-    console.log(html);
-  } else {
-    html = `Uy que despiste, no sabemos su raza`;
-    console.log(html);
-  }
-
-  if (kittenRace2 === '') {
-    html = kittenRace2;
-    console.log(html);
-  } else {
-    html = `Uy que despiste, no sabemos su raza`;
-    console.log(html);
-  }
-
-  if (kittenRace3 === 'Maine Coon') {
-    html = kittenRace3;
-    console.log(html);
-  } else {
-    html = `Uy que despiste, no sabemos su raza`;
-    console.log(html);
-  } 
-*/
