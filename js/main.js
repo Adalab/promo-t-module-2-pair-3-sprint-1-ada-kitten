@@ -60,31 +60,41 @@ const kittenDataList = [kittenData_1, kittenData_2, kittenData_3, kittenData_4];
 
 // FUNCIONES
 
+function renderKittenList (kittenDataList) { 
+  listElement.innerHTML = '';
+  for (let i = 0; i < kittenDataList.length; i++) {
+    listElement.innerHTML += renderKitten(kittenDataList[i]);
+  }
+}
+
 const renderKitten = (kittenData) => {
   let html = '';
   function renderRace() {
     if (kittenData.race === "") {
-        return `Uy que despiste, no sabemos su raza`;
-      } else {
-        return kittenData.race;
-      }
+      return `Uy que despiste, no sabemos su raza`;
+    } else {
+      return kittenData.race;
     }
-    let htmlCode = `<li class="card">`;
-    htmlCode += `<img class="card_img"src=" ${kittenData.image}" alt="maine-coon-cat" />`;
-    htmlCode += `<h3 class="card_title">${kittenData.name.toUpperCase()}</h3>`;
-    htmlCode += `<h4 class="card_race">${ renderRace() }</h4>`;
-    htmlCode += `<p class="card_description">${kittenData.desc}</p>`;
-    htmlCode += `</li>`;
-    return htmlCode;
   }
+  let htmlCode = `<li class="card">`;
+  htmlCode += `<img class="card_img"src=" ${kittenData.image}" alt="maine-coon-cat" />`;
+  htmlCode += `<h3 class="card_title">${kittenData.name.toUpperCase()}</h3>`;
+  htmlCode += `<h4 class="card_race">${ renderRace() }</h4>`;
+  htmlCode += `<p class="card_description">${kittenData.desc}</p>`;
+  htmlCode += `</li>`;
+  return htmlCode;
+}
 
-  const kittenOne = renderKitten(kittenDataList[0]);
+renderKittenList(kittenDataList);
+
+//console.log(renderKittenList(kittenDataList)); 
+  /*const kittenOne = renderKitten(kittenDataList[0]);
 
   const kittenTwo = renderKitten(kittenDataList[1]);
 
   const kittenThree = renderKitten(kittenDataList[2]);
       
-  const kittenFour = renderKitten(kittenDataList[3]);
+  const kittenFour = renderKitten(kittenDataList[3]); */
 
 
 // MOSTRAR / OCULTAR EL FORMULARIO AÑADIR GATITO CON FUNCIONES
@@ -115,14 +125,21 @@ function addNewKitten () {
 
 // Búsqueda
 
-
-
 const filterKitten = (event) => {
   event.preventDefault();
   listElement.innerHTML = '';
   const descrSearchText = input_search_desc.value;
   const raceSearch = input_race.value;
-  if (kittenData_1.desc.includes(descrSearchText) && kittenData_1.race.includes(raceSearch)) {
+  for (const kittenItem of kittenDataList) {
+    if(kittenItem.desc.includes(descrSearchText) && kittenItem.race.includes(raceSearch)) {
+      listElement.innerHTML += renderKitten(kittenItem);
+    }
+    //Completa el código
+    //Comprueba si cada gatito contiene la descripción
+    //Si la contiene pintamos un gatito
+    //utilizando la función renderKitten(kittenItem)
+  }
+  /* if (kittenData_1.desc.includes(descrSearchText) && kittenData_1.race.includes(raceSearch)) {
     listElement.innerHTML += kittenOne;
   }
   if (kittenData_2.desc.includes(descrSearchText) && kittenData_2.race.includes(raceSearch) ) {
@@ -133,7 +150,7 @@ const filterKitten = (event) => {
   }
   if (kittenData_4.desc.includes(descrSearchText) && kittenData_4.race.includes(raceSearch)) {
     listElement.innerHTML += kittenFour;
-  }
+  } */
 };
 
   /*let html = '';
@@ -170,7 +187,7 @@ const filterKitten = (event) => {
   } 
 }*/
 
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour;
+/* listElement.innerHTML = kittenOne + kittenTwo + kittenThree + kittenFour; */
 
 // EVENTOS
 
